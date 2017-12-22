@@ -36,18 +36,17 @@ expect "Please re-enter password for verification:"\n\
 send  "$PASSWORD\\r"\n\
 expect eof' >> ./run.sh; chmod +x ./run.sh
 
-# We cannot run the automated installation, as Docker gives no more space left on device error message
-# Note: running the script run.sh after the image is created will work
-# RUN ./run.sh
-
 # Expose the ports to work with NW ABAP
 EXPOSE 8000
 EXPOSE 44300
 EXPOSE 3300
 EXPOSE 3200
 
+# We cannot run the automated installation, as Docker gives no more space left on device error message
+# Note: running the script run.sh after the image is created will work
+RUN ./run.sh
+
 # Command sequence to use this Dockerfile
 
-# docker build -t nwabap
+# docker build -t nwabap .
 # docker run -P -h vhcalnplci --name nwabap751 -it nwabap:latest /bin/bash
-# ./run.sh
