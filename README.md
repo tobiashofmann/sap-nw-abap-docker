@@ -12,7 +12,7 @@ To be able to setup the Docker container with just one command, make sure to rea
 
 ## Short version
 
-1. Download your version of [SAP NetWeaver ABAP 7.5x Developer Edition from SAP](https://tools.hana.ondemand.com/#abap). The files are compressed (RAR). Un-compress them into a folder named NW751. The folder must be at the same location where your Dockerfile is.
+1. Download your version of [SAP NetWeaver ABAP 7.5x Developer Edition from SAP](https://tools.hana.ondemand.com/#abap). The files are compressed (RAR). Un-compress them into a folder named NW752. The folder must be at the same location where your Dockerfile is.
 
 2. Build the Docker image
 
@@ -23,7 +23,7 @@ docker build -t nwabap .
 3. Start container
 
 ```sh
-docker run -P -h vhcalnplci --name nwabap751 -it nwabap:latest /bin/bash
+docker run -P -h vhcalnplci --name nwabap752 -it nwabap:latest /bin/bash
 ```
 
 4. Start NetWeaver installation
