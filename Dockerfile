@@ -6,28 +6,26 @@ LABEL de.itsfullofstars.sapnwdocker.vendor="Tobias Hofmann"
 LABEL de.itsfullofstars.sapnwdocker.name="Docker for SAP NetWeaver 7.5x Developer Edition"
 
 # Install dependencies
-RUN zypper --non-interactive install --replacefiles  uuidd expect tcsh which iputils vim hostname tar net-tools iproute2
+RUN zypper --non-interactive install --replacefiles uuidd expect tcsh which vim hostname tar net-tools iproute2
 
 # Run uuidd
 RUN mkdir /run/uuidd && chown uuidd /var/run/uuidd && /usr/sbin/uuidd
 
 # Copy the downloaded and unrared SAP NW ABAP files to the container
-COPY NW751 /tmp/NW751/
+COPY NW752 /tmp/NW752/
 
-# We will work from /tmp/NW751
-WORKDIR /tmp/NW751
+# We will work from /tmp/NW752
+WORKDIR /tmp/NW752
 
 # Make the install.sh from SAP executable
 RUN chmod +x install.sh
 
 # Prepare the shell script to install NW ABAP without asking for user input (using expect)
-# Note: Password being used is s@pABAP751
+# Note: Password being used is s@pABAP752
 RUN echo $'#!/usr/bin/expect -f \n\
 spawn ./install.sh -s -k \n\
-set PASSWORD "s@pABAP751"\n\
+set PASSWORD "s@pABAP752"\n\
 set timeout -1\n\
-expect "Hit enter to continue!" \n\
-send "\\rq" \n\
 expect "Do you agree to the above license terms? yes/no:"\n\
 send "yes\\r"\n\
 expect "Please enter a password:"\n\
@@ -49,4 +47,4 @@ RUN ./run.sh
 # Command sequence to use this Dockerfile
 
 # docker build -t nwabap .
-# docker run -P -h vhcalnplci --name nwabap751 -it nwabap:latest /bin/bash
+# docker run -P -h vhcalnplci --name nwabap752 -it nwabap:latest /bin/bash
