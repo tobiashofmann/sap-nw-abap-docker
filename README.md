@@ -1,5 +1,7 @@
 # sap-nw-abap-docker
-SAP NetWeaver ABAP Developer Edition in Docker
+SAP NetWeaver ABAP Developer Edition in Docker.
+
+The Dockerfile works for the NW750 and NW751 as well as for the new (Sep 2018) NW752 trial from SAP. To install the NetWeaver 7.52 SP01 trial, use the Dockerfile and store the downloaded and extracted rar files from SAP in the folder NW752.
 
 # Installation
 
