@@ -12,10 +12,10 @@ RUN zypper --non-interactive install --replacefiles uuidd expect tcsh which vim 
 RUN mkdir /run/uuidd && chown uuidd /var/run/uuidd && /usr/sbin/uuidd
 
 # Copy the downloaded and unrared SAP NW ABAP files to the container
-COPY NW752 /tmp/NW752/
+COPY NW752 /var/tmp/NW752/
 
-# We will work from /tmp/NW752
-WORKDIR /tmp/NW752
+# We will work from /var/tmp/NW752
+WORKDIR /var/tmp/NW752
 
 # Make the install.sh from SAP executable
 RUN chmod +x install.sh
