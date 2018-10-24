@@ -6,16 +6,17 @@ LABEL de.itsfullofstars.sapnwdocker.vendor="Tobias Hofmann"
 LABEL de.itsfullofstars.sapnwdocker.name="Docker for SAP NetWeaver 7.5x Developer Edition"
 
 # Install dependencies
-RUN zypper --non-interactive install --replacefiles uuidd expect tcsh which vim hostname tar net-tools iproute2
+RUN zypper --non-interactive install --replacefiles uuidd expect tcsh which vim hostname tar net-tools iproute2; \
+    zypper clean
 
 # Run uuidd
 RUN mkdir /run/uuidd && chown uuidd /var/run/uuidd && /usr/sbin/uuidd
 
 # Copy the downloaded and unrared SAP NW ABAP files to the container
-COPY NW752 /tmp/NW752/
+COPY NW752 /var/tmp/NW752/
 
-# We will work from /tmp/NW752
-WORKDIR /tmp/NW752
+# We will work from /var/tmp/NW752
+WORKDIR /var/tmp/NW752
 
 # Make the install.sh from SAP executable
 RUN chmod +x install.sh
@@ -43,6 +44,9 @@ EXPOSE 3200
 # We cannot run the automated installation, as Docker gives no more space left on device error message
 # Note: running the script run.sh after the image is created will work
 RUN ./run.sh
+
+# The installation files just make the final image bigger.
+RUN rm -rf /var/tmp/NW752
 
 # Command sequence to use this Dockerfile
 
