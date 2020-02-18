@@ -6,7 +6,7 @@ LABEL de.itsfullofstars.sapnwdocker.vendor="Tobias Hofmann"
 LABEL de.itsfullofstars.sapnwdocker.name="Docker for SAP NetWeaver 7.5x Developer Edition"
 
 # Install dependencies
-RUN zypper --non-interactive install --replacefiles uuidd expect tcsh which vim hostname tar net-tools iproute2; \
+RUN zypper --non-interactive install --replacefiles uuidd expect tcsh which vim hostname tar net-tools iputils libaio iproute2 net-tools-deprecated gzip; \
     zypper clean
 
 # Run uuidd
@@ -27,6 +27,8 @@ RUN echo $'#!/usr/bin/expect -f \n\
 spawn ./install.sh -s -k \n\
 set PASSWORD "s@pABAP752"\n\
 set timeout -1\n\
+expect "Your distribution \'opensuse-leap\' was not tested. Do you want to continue?"\n\
+send "yes\\r"\n\
 expect "Do you agree to the above license terms? yes/no:"\n\
 send "yes\\r"\n\
 expect "Please enter a password:"\n\
