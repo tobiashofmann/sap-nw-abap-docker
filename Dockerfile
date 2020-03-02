@@ -1,4 +1,4 @@
-FROM opensuse/leap:latest
+FROM opensuse/archive:latest
 
 # General information
 LABEL de.itsfullofstars.sapnwdocker.version="1.0.0"
