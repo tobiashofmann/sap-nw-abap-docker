@@ -6,7 +6,7 @@ LABEL de.itsfullofstars.sapnwdocker.vendor="Tobias Hofmann"
 LABEL de.itsfullofstars.sapnwdocker.name="Docker for SAP NetWeaver 7.5x Developer Edition"
 
 # Install dependencies
-RUN zypper --non-interactive install --replacefiles uuidd expect tcsh which vim hostname tar net-tools iputils libaio iproute2 net-tools-deprecated gzip; \
+RUN zypper --non-interactive install --replacefiles uuidd expect tcsh which vim hostname tar net-tools iputils libaio iproute2 gzip; \
     zypper clean
 
 # Run uuidd
